@@ -1,21 +1,22 @@
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { MinifigResponseType } from "../../config/types/types";
 import { Button } from "../shared";
 import { MinifigItem } from "./components";
-import { MinifigsResponseType, useMinifigs } from "./use-minifigs";
+import { useMinifigs } from "./use-minifigs";
 
 const Minifigs: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [selectedMinifig, setSelectedMinifig] =
-    useState<MinifigsResponseType | null>(null);
+    useState<MinifigResponseType | null>(null);
   const { randomMinifigs } = useMinifigs();
 
   return (
     <section className="flex h-full flex-col items-center justify-center gap-8">
       <h1 className="text-4xl font-bold uppercase tracking-wider text-white">
-        {t("minifig|title")}
+        {t("minifigs|title")}
       </h1>
       <div className="flex gap-8">
         {randomMinifigs?.map((minifig) => (

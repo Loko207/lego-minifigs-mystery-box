@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { cnBase } from "tailwind-variants";
+import { MinifigResponseType } from "../../../../config/types/types";
 import { LinkButton } from "../../../shared";
-import { MinifigsResponseType } from "../../use-minifigs";
 
 type MinifigItemProps = {
   handleSelectMinifig: () => void;
   isSelected: boolean;
-} & MinifigsResponseType;
+} & MinifigResponseType;
 
 export const MinifigItem: FC<MinifigItemProps> = ({
   set_num,
