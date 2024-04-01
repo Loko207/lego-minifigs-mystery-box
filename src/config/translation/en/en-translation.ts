@@ -24,4 +24,5 @@ export const EN_TRANSLATION = {
   "error|zipCode": "Zip code is not valid.",
   "error|phone": "Phone number is not valid.",
   "error|birth": "Birth day is not valid.",
+  "success|submitted": "Congratulations!",
 };

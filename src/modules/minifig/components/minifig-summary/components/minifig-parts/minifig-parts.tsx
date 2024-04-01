@@ -1,7 +1,10 @@
+import ky, { HTTPError } from "ky";
 import { FC, Fragment } from "react";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import useSWR from "swr";
+import { toast } from "react-toastify";
+import useSWR, { BareFetcher } from "swr";
 import { PageableResponseType } from "../../../../../../config/types/types";
 //we can add type for unknown types unnecessary for task purpose
 type PartType = {
@@ -33,10 +36,37 @@ type PartType = {
 export const MinifigParts: FC = () => {
   const { t } = useTranslation();
   const { id } = useParams<Record<"id", string>>();
-  const { data: partsData, isLoading: isPartsLoading } = useSWR<
-    PageableResponseType<PartType>
-  >(`/lego/minifigs/${id}/parts`);
+  const { setValue } = useFormContext();
 
+  const partsFetcher: BareFetcher<
+    PageableResponseType<PartType> | undefined
+  > = async (url) => {
+    try {
+      const result = await ky
+        .get(`${import.meta.env.VITE_API_URL}${url}`, {
+          headers: {
+            Authorization: `key ${import.meta.env.VITE_API_KEY}`,
+          },
+        })
+        .json<PageableResponseType<PartType>>();
+      setValue("partsDetails", {
+        count: result.count,
+        parts: result.results.map(
+          ({ quantity, part: { part_num }, color: { id } }) => ({
+            quantity,
+            part_num,
+            color_id: id,
+          })
+        ),
+      });
+      return result as PageableResponseType<PartType>;
+    } catch (e) {
+      toast.error((e as HTTPError)?.message || t("error|something-wrong"));
+    }
+  };
+  const { data: partsData, isLoading: isPartsLoading } = useSWR<
+    PageableResponseType<PartType> | undefined
+  >(`/lego/minifigs/${id}/parts`, partsFetcher);
   return (
     <>
       <p className="self-start text-3xl font-bold">

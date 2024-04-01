@@ -4,6 +4,11 @@ import { postcodeValidator } from "postcode-validator";
 import i18n from "../../i18n";
 import { InputConfigType, PhoneInput } from "../shared";
 
+export type PartDetailType = {
+  quantity: number;
+  part_num: number;
+  color_id: string;
+};
 export type ShipmentFormType = {
   firstName: string;
   surname: string;
@@ -14,6 +19,10 @@ export type ShipmentFormType = {
   city: string;
   state: string;
   zipCode: string;
+  partsDetails?: {
+    count: number;
+    parts: PartDetailType[];
+  };
 };
 
 export const shipmentFormDefaultValues: ShipmentFormType = {
@@ -28,7 +37,9 @@ export const shipmentFormDefaultValues: ShipmentFormType = {
   zipCode: "",
 };
 
-export const shipmentFormInputsConfig: InputConfigType<ShipmentFormType>[] = [
+export const shipmentFormInputsConfig: InputConfigType<
+  Omit<ShipmentFormType, "partsDetails">
+>[] = [
   {
     name: "firstName",
     label: i18n.t("minifig|form|firstName"),
