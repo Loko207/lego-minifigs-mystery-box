@@ -14,7 +14,7 @@ const Minifig: FC = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <div className="flex  max-w-screen-2xl gap-20 p-8">
+      <div className="flex max-w-screen-2xl gap-20 p-8">
         <FormProvider {...methods}>
           <Form<ShipmentFormType> inputsConfig={shipmentFormInputsConfig} />
           <MinifigSummary>

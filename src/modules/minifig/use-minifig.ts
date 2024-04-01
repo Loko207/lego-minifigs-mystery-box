@@ -24,6 +24,8 @@ export const useMinifig = () => {
 
   const onSubmit = () => {
     handleSubmit(async ({ firstName, surname, email, partsDetails }) => {
+      //if we there will be api for storing user details,
+      //we should send request with body like 'ShipmentFormType' type without partsDetails prop
       try {
         if (partsDetails) {
           const result = await createPartlist({
