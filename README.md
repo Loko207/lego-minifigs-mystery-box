@@ -17,5 +17,5 @@ Run dev server
 `npm run dev`
 
 You can also test the app by clicking one of below links\
-https://lego-minifigs-d6df1.web.app\
+https://lego-minifigs-d6df1.web.app \
 https://lego-minifigs-d6df1.firebaseapp.com
