@@ -5,6 +5,7 @@ import {
 } from "react-international-phone";
 import "react-international-phone/style.css";
 import { cnBase } from "tailwind-variants";
+import { LabelWrapper } from "./components";
 import { InputProps } from "./input";
 
 export const PhoneInput = forwardRef<HTMLInputElement, InputProps>(
@@ -13,20 +14,26 @@ export const PhoneInput = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <label className={cnBase("flex flex-col gap-3", containerClassName)}>
-        <p>{label}</p>
+      <LabelWrapper
+        containerClassName={containerClassName}
+        label={label}
+        message={message}
+      >
         <LibPhoneInput
           {...restInputProps}
           ref={ref as LegacyRef<PhoneInputRefType>}
           className={cnBase("h-12 rounded", className)}
           countrySelectorStyleProps={{
-            buttonClassName: "!h-12",
-            dropdownStyleProps: { listItemClassName: "h-10" },
+            buttonClassName: "!h-12 w-20",
+            dropdownStyleProps: {
+              listItemClassName: "h-20",
+              listItemCountryNameClassName: "text-xl",
+              listItemDialCodeClassName: "text-xl",
+            },
           }}
-          inputClassName="w-full !h-12"
+          inputClassName="w-full !h-12 !text-2xl"
         />
-        {message && <p>{message}</p>}
-      </label>
+      </LabelWrapper>
     );
   }
 );

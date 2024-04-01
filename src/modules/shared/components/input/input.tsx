@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { cnBase } from "tailwind-variants";
+import { LabelWrapper } from "./components";
 
 export type InputProps = {
   message?: string;
@@ -15,15 +16,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <label className={cnBase("flex flex-col gap-3", containerClassName)}>
-        <p>{label}</p>
+      <LabelWrapper
+        containerClassName={containerClassName}
+        label={label}
+        message={message}
+      >
         <input
           {...restInputProps}
           ref={ref}
-          className={cnBase("rounded p-3", className)}
+          className={cnBase("rounded p-3 text-2xl", className)}
         />
-        {message && <p>{message}</p>}
-      </label>
+      </LabelWrapper>
     );
   }
 );
