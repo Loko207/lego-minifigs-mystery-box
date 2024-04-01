@@ -22,14 +22,14 @@ export const MinifigItem: FC<MinifigItemProps> = ({
     <div
       key={set_num}
       className={cnBase(
-        "flex min-h-60 w-60 flex-col items-center gap-6 rounded bg-white p-6 hover:cursor-pointer hover:shadow-[0px_0px_16px_6px] hover:shadow-orange-500",
+        "flex min-h-[396px] w-80 flex-col items-center gap-6 rounded-lg bg-white p-6 hover:cursor-pointer hover:shadow-[0px_0px_16px_6px] hover:shadow-orange-500",
         isSelected && "shadow-[0px_0px_16px_6px] shadow-orange-700"
       )}
       onClick={handleSelectMinifig}
     >
       <img src={set_img_url} alt={name} className="max-h-44" />
-      <div className="mt-auto flex flex-col items-center justify-center gap-6">
-        <p className="text-center">{name}</p>
+      <div className="mt-auto flex flex-col items-center justify-center">
+        <p className="line-clamp-3 text-center text-xl">{name}</p>
         <LinkButton to={set_url} variant="link">
           {t("shared|button|show-details")}
         </LinkButton>

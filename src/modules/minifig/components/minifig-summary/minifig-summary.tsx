@@ -34,7 +34,7 @@ type PartType = {
   num_sets: number;
 };
 
-export const MinifigSummary: FC<{ children?: ReactNode }> = ({ children }) => {
+export const MinifigSummary: FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation();
   const { id } = useParams<Record<"id", string>>();
   const { data } = useSWR<MinifigResponseType>(`/lego/minifigs/${id}`);

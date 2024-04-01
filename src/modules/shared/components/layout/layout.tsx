@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 
-export const Layout: FC = () => {
+export const Layout: FC<{ children?: ReactNode }> = ({ children }) => {
   return (
-    <main className="h-screen min-h-screen w-full bg-purple-600">
-      <Outlet />
+    <main className="min-h-screen w-full bg-indigo-950 bg-[url('src/assets/background.svg?react')] bg-center">
+      {children || <Outlet />}
     </main>
   );
 };

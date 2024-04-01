@@ -6,6 +6,8 @@ import {
 } from "../../config/types/types";
 import { getRandomNumberBetween } from "../shared/utils";
 
+const RANDOM_MINFIGS_AMOUNT = 3;
+
 export const useMinifigs = () => {
   const { data, isLoading, error } = useSWR<
     PageableResponseType<MinifigResponseType>
@@ -14,7 +16,7 @@ export const useMinifigs = () => {
   const randomMinifigs = useMemo<MinifigResponseType[]>(() => {
     if ((isLoading || !!error) && !data) return [];
     const randomData: MinifigResponseType[] = [];
-    while (randomData?.length < 3) {
+    while (randomData?.length < RANDOM_MINFIGS_AMOUNT) {
       let randomMinifig = data?.results?.[getRandomNumberBetween(data?.count)];
       //prevent adding twice the same minifig
       //because of possibility to generate the same random number

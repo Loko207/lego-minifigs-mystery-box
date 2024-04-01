@@ -10,7 +10,14 @@ import "./main.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <SWRConfig value={{ fetcher }}>
+    <SWRConfig
+      value={{
+        fetcher,
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+      }}
+    >
       <LogoMinifigsMysteryBoxApp />
       <ToastContainer />
     </SWRConfig>

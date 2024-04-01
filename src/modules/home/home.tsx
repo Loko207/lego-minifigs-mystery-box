@@ -6,8 +6,8 @@ import { LinkButton } from "../shared";
 const Home: FC = () => {
   const { t } = useTranslation();
   return (
-    <section className="flex h-full flex-col items-center justify-center gap-8">
-      <h1 className="text-4xl font-bold uppercase tracking-wider text-white">
+    <section className="flex h-screen flex-col items-center justify-center gap-12">
+      <h1 className="text-7xl font-bold uppercase tracking-wider text-white [text-shadow:2px_2px_4px_#6B7280]">
         {t("home|title")}
       </h1>
       <LinkButton to={PATH.MINIFIGS}>{t("shared|button|lets-go")}</LinkButton>

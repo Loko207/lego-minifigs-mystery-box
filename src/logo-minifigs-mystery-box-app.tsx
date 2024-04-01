@@ -13,9 +13,11 @@ export const LogoMinifigsMysteryBoxApp = () => {
     <BrowserRouter>
       <Suspense
         fallback={
-          <div className="flex h-screen w-full items-center justify-center">
-            <LoaderIcon className="animate-spin" />
-          </div>
+          <Layout>
+            <div className="flex h-screen w-full items-center justify-center">
+              <LoaderIcon className="h-32 w-32 animate-spin text-white" />
+            </div>
+          </Layout>
         }
       >
         <Routes>

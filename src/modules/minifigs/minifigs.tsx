@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MinifigResponseType } from "../../config/types/types";
 import { Button } from "../shared";
 import { MinifigItem } from "./components";
+import { MinifigItemLoader } from "./components/minifig-item/minifig-item-loader";
 import { useMinifigs } from "./use-minifigs";
 
 const Minifigs: FC = () => {
@@ -11,14 +12,15 @@ const Minifigs: FC = () => {
   const navigate = useNavigate();
   const [selectedMinifig, setSelectedMinifig] =
     useState<MinifigResponseType | null>(null);
-  const { randomMinifigs } = useMinifigs();
+  const { randomMinifigs, isLoading } = useMinifigs();
 
   return (
-    <section className="flex h-full flex-col items-center justify-center gap-8">
-      <h1 className="text-4xl font-bold uppercase tracking-wider text-white">
+    <section className="flex h-screen flex-col items-center justify-center gap-12">
+      <h1 className="text-7xl font-bold uppercase tracking-wider text-white [text-shadow:2px_2px_4px_#6B7280]">
         {t("minifigs|title")}
       </h1>
       <div className="flex gap-8">
+        {isLoading && [1, 2, 3].map((e) => <MinifigItemLoader key={e} />)}
         {randomMinifigs?.map((minifig) => (
           <MinifigItem
             key={minifig?.name}
